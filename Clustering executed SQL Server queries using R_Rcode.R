@@ -43,12 +43,17 @@ query.dist <- dist(qd.use)
 query.hclust <- hclust(query.dist)
 
 # plotting solution
-op = par(bg = "lightblue")
+op <- par(bg = "lightblue")
 plot(query.hclust,labels=query.data$label_graph,main='Query Hierarchical Clustering', ylab = 'Distance', xlab = ' ', hang = -1, sub = "" )
 # in addition to circle queries within cluster
 rect.hclust(query.hclust, k=3, border="DarkRed")		
 
 
+# additional visualization
+qdend <- as.dendrogram(query.hclust)
+
+
+plot(qdend, type = "triangle")
 
 # we get 3 clusters
 groups.3 = cutree(query.hclust,3)
